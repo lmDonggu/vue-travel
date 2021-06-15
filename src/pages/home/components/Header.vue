@@ -20,6 +20,8 @@ export default {
 }
 </script>
 
+<!--组件样式，不影响其他组件-->
+<!--1rem = html front-size = 50px-->
 <style lang="stylus" scoped>
 @import '~@/assets/styles/varibles.styl'
   .header
