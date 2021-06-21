@@ -20,10 +20,11 @@ export default {
 }
 </script>
 
-<!--组件样式，不影响其他组件-->
-<!--1rem = html front-size = 50px-->
+<!-- 组件样式，不影响其他组件 -->
+<!-- 1rem = html front-size = 50px -->
+<!-- 在CSS中引入其他CSS样式需要增加 ~ 符号 -->
 <style lang="stylus" scoped>
-@import '~@/assets/styles/varibles.styl'
+@import '~@styles/varibles.styl'
   .header
     display: flex
     line-height: .86rem

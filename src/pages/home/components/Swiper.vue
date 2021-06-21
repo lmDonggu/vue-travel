@@ -22,15 +22,15 @@ export default {
       },
       swiperList: [{
         id: '0001',
-        imgUrl: require('../../../assets/img/t1.png')
+        imgUrl: require('@assets/img/t1.png')
       },
       {
         id: '0002',
-        imgUrl: require('../../../assets/img/t2.png')
+        imgUrl: require('@assets/img/t2.png')
       },
       {
         id: '0003',
-        imgUrl: require('../../../assets/img/t3.png')
+        imgUrl: require('@assets/img/t3.png')
       }]
     }
   }
