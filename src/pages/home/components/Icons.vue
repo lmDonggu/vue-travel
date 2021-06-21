@@ -1,6 +1,6 @@
 <template>
     <div class="icons">
-        <swiper>
+        <swiper :options="swiperOption">
             <swiper-slide v-for="(page, index) of pages" :key="index">
                 <div class="icon" v-for="item of page" :key="item.id">
                     <div class="icon-img">
@@ -16,69 +16,21 @@
 <script>
 export default {
   name: 'HomeIcons',
-  data() {
+  props: {
+    list: Array
+  },
+  data () {
     return {
-      iconsList: [{
-        id: '0001',
-        desc: '景点门票',
-        imgUrl: require('../../../assets/img/l1.png')
-      },
-      {
-        id: '0002',
-        desc: '境内游',
-        imgUrl: require('../../../assets/img/l2.png')
-      },
-      {
-        id: '0003',
-        desc: '境外游',
-        imgUrl: require('../../../assets/img/l3.png')
-      },
-      {
-        id: '0004',
-        desc: '酒店',
-        imgUrl: require('../../../assets/img/l4.png')
-      },
-      {
-        id: '0005',
-        desc: '机场免税',
-        imgUrl: require('../../../assets/img/l5.png')
-      },
-      {
-        id: '0006',
-        desc: '爬山',
-        imgUrl: require('../../../assets/img/l6.png')
-      },
-      {
-        id: '0007',
-        desc: '周边景点',
-        imgUrl: require('../../../assets/img/l7.png')
-      },
-      {
-        id: '0008',
-        desc: '自由行',
-        imgUrl: require('../../../assets/img/l8.png')
-      },
-      {
-        id: '0009',
-        desc: '特色小吃',
-        imgUrl: require('../../../assets/img/l9.png')
-      },
-      {
-        id: '0010',
-        desc: '商场',
-        imgUrl: require('../../../assets/img/l10.png')
-      },
-      {
-        id: '0011',
-        desc: '打车',
-        imgUrl: require('../../../assets/img/l11.png')
-      }]
+      swiperOption: {
+        // 禁止自动播放
+        autoplay: false
+      }
     }
   },
   computed: {
     pages () {
       const pages = []
-      this.iconsList.forEach((item, index) => {
+      this.list.forEach((item, index) => {
         const page = Math.floor(index / 8)
         if (!pages[page]) {
           pages[page] = []
