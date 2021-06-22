@@ -22,13 +22,10 @@
         </div>
 
         <!-- 字母表 -->
-        <div class="area" v-for="(item, key) of cities" :key="key">
+        <div class="area" v-for="(item, key) of cities" :key="key" :ref="key">
             <div class="title border-topbottom">{{key}}</div>
             <div class="item-list">
-                <div
-                class="item border-bottom"
-                v-for="innerItem of item"
-                :key="innerItem.id">
+                <div class="item border-bottom" v-for="innerItem of item" :key="innerItem.id">
                   {{innerItem.name}}
                 </div>
             </div>
@@ -44,10 +41,20 @@ export default {
   name: 'CityList',
   props: {
     hot: Array,
-    cities: Object
+    cities: Object,
+    letter: String
   },
   mounted () {
     this.scroll = new Bscroll(this.$refs.wrapper)
+  },
+  watch: {
+    letter () {
+      if (this.letter) {
+        const element = this.$refs[this.letter][0]
+        // console.log(element) 必须是DOM元素，因为this.$refs[this.letter]输出的是一个数组，所以取[0]
+        this.scroll.scrollToElement(element)
+      }
+    }
   }
 }
 </script>

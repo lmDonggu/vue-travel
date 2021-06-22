@@ -1,15 +1,70 @@
 <template>
   <ul class="list">
-      <li class="item" v-for="(item, key) of cities" :key="key">{{key}}</li>
+      <li class="item" v-for="item of letters" :key="item" :ref="item"
+      @click="handleLetterClick"
+      @touchstart="handleTouchStart"
+      @touchmove="handleTouchMove"
+      @touchend="handleTouchEnd"
+      >{{item}}</li>
   </ul>
 </template>
 
 <script>
 import Bscroll from 'better-scroll'
+
 export default {
   name: 'CityAlphabet',
   props: {
     cities: Object
+  },
+  computed: {
+    letters () {
+      const letters = []
+      for (var i in this.cities) {
+        letters.push(i)
+      }
+      return letters
+    }
+  },
+  updated () {
+    // 数据更新时 A距离组件顶部的距离（距离搜索栏底部）
+    this.startY = this.$refs.A[0].offsetTop
+  },
+  data () {
+    return {
+      touchStatus: false,
+      startY: 0,
+      timer: null
+    }
+  },
+  methods: {
+    handleLetterClick (e) {
+      this.$emit('change', e.target.innerText)
+    },
+    handleTouchStart () {
+      this.touchStatus = true
+    },
+    handleTouchMove (e) {
+      if (this.touchStatus) {
+        // 函数节流
+        if (this.timer) {
+          clearTimeout(this.timer)
+        }
+        this.timer = setTimeout(() => {
+          // 手指距离客户端顶部距离
+          const touchY = e.touches[0].clientY - 79
+          // 计算出当前滑动到第几个字母，字母下标
+          const index = Math.floor((touchY - this.startY) / 20)
+          // 防止下标错误，并向外触发事件
+          if (index >= 0 && index < this.letters.length) {
+            this.$emit('change', this.letters[index])
+          }
+        }, 16)
+      }
+    },
+    handleTouchEnd () {
+      this.touchStatus = false
+    }
   }
 }
 </script>
