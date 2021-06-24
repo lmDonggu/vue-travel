@@ -7,6 +7,7 @@ module.exports = {
       .set('@', resolve('src'))
       .set('@assets', resolve('src/assets'))
       .set('@styles', resolve('src/assets/styles'))
+      .set('@common', resolve('src/common'))
   },
   devServer: {
     // Paths
