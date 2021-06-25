@@ -38,10 +38,16 @@ export default {
       }
     }
   },
-  activated () {
+  // activated () {
+  //   window.addEventListener('scroll', this.handleScoll)
+  // },
+  // deactivated () {
+  //   window.removeEventListener('scroll', this.handleScoll)
+  // }
+  mounted () {
     window.addEventListener('scroll', this.handleScoll)
   },
-  deactivated () {
+  ummounted () {
     window.removeEventListener('scroll', this.handleScoll)
   }
 }
