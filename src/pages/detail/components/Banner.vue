@@ -18,7 +18,7 @@
 import CommonGallary from '@common/gallary/Gallary'
 
 export default {
-  name: 'detail',
+  name: 'DetailBanner',
   data () {
     return {
       showGallary: false,
