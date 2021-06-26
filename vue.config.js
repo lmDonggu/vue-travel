@@ -2,6 +2,9 @@ const path = require('path')
 const resolve = (dir) => path.join(__dirname, dir)
 
 module.exports = {
+  publicPath: './',
+  outputDir: 'dist',
+  assetsDir: 'public',
   chainWebpack: config => {
     config.resolve.alias // 添加别名
       .set('@', resolve('src'))
@@ -11,17 +14,18 @@ module.exports = {
   },
   devServer: {
     // Paths
-    host: 'localhost',
+    host: '0.0.0.0',
     port: 8080,
     https: false,
-    proxy: {
-      '/api': {
-        target: 'http://localhost:8080',
-        changeOrigin: true,
-        pathRewrite: {
-          '^/api': '/mock'
-        }
-      }
-    }
+    proxy: null
+    // proxy: {
+    //   '/api': {
+    //     target: 'http://localhost:8080',
+    //     changeOrigin: true,
+    //     pathRewrite: {
+    //       '^/api': '/mock'
+    //     }
+    //   }
+    // }
   }
 }

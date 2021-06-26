@@ -10,8 +10,6 @@
 </template>
 
 <script>
-import Bscroll from 'better-scroll'
-
 export default {
   name: 'CityAlphabet',
   props: {
